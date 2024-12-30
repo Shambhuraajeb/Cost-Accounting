@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cost Accounting Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #eef2f3;
+            color: #495057;
+        }
+
+        .navbar {
+            background-color: #1a237e;
+        }
+
+        .navbar-brand {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .dashboard-section {
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .dashboard-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .dashboard-section h4 {
+            color: #1a237e;
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            margin-top: auto;
+            background-color: #1a237e;
+            border: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #1a237e;
+        }
+
+        .container h1 {
+            color: #1a237e;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .container p {
+            color: #6c757d;
+        }
+
+        .dashboard-section p {
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .row.g-4 {
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-section {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Cost Accounting ERP</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row g-4">
+            <!-- Dashboard Section Header -->
+            <div class="col-12">
+                <h1>Welcome to the Cost Accounting ERP Dashboard</h1>
+                <p>Select a module to manage your cost accounting tasks</p>
+            </div>
+
+            <!-- Company Profile Section -->
+            <div class="col-md-4">
+                <div class="dashboard-section card">
+                    <h4>Company Creation</h4>
+                    <p>Create company first to do tasks.</p>
+                    <a href="company_creation.html" class="btn btn-primary">Create Profile</a>
+                </div>
+            </div>
+
+            <!-- Company Profile Section -->
+            <div class="col-md-4">
+                <div class="dashboard-section card">
+                    <h4>Company Profile</h4>
+                    <p>View and manage company information and settings.</p>
+                    <a href="profile.jsp" class="btn btn-primary">Go to Profile</a>
+                </div>
+            </div>
+
+            <!-- GST Details Section -->
+            <div class="col-md-4">
+                <div class="dashboard-section card">
+                    <h4>GST Details</h4>
+                    <p>Manage and update GST registration information.</p>
+                    <a href="GST.jsp" class="btn btn-primary">View GST</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="dashboard-section card">
+                    <h4>Employee</h4>
+                    <p>Register and manage all employees.</p>
+                    <a href="employee.html" class="btn btn-primary">Register</a>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="dashboard-section card">
+                    <h4>Project</h4>
+                    <p>Create and manage all projects..</p>
+                    <a href="project.jsp" class="btn btn-primary">Manage</a>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="dashboard-section card">
+                    <h4>Product</h4>
+                    <p>Register and manage all products.</p>
+                    <a href="product.jsp" class="btn btn-primary">Add</a>
+                </div>
+            </div>
+
+
+            <!-- Budget Management Section -->
+            <div class="col-md-4">
+                <div class="dashboard-section card">
+                    <h4>Budget Management</h4>
+                    <p>Manage and track budgets for various projects and products.</p>
+                    <a href="budget.html" class="btn btn-primary">Manage Budgets</a>
+                </div>
+            </div>
+            
+            <!-- Budget Management Section -->
+            <div class="col-md-4">
+                <div class="dashboard-section card">
+                    <h4>Show Budget</h4>
+                    <p>Manage and track budgets for various projects and products.</p>
+                    <a href="budgetlist.jsp" class="btn btn-primary">Show Budgets</a>
+                </div>
+            </div>
+            
+            <!-- Transaction Section -->
+            <div class="col-md-4">
+                <div class="dashboard-section card">
+                    <h4>Transaction</h4>
+                    <p>View and analyze daily transactions for products.</p>
+                    <a href="transaction.jsp" class="btn btn-primary">View Transaction</a>
+                </div>
+            </div>
+
+            <!-- Report Section -->
+            <div class="col-md-4">
+                <div class="dashboard-section card">
+                    <h4>Report</h4>
+                    <p>View and analyze cost reports for products.</p>
+                    <a href="report.jsp" class="btn btn-primary">View Report</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Budget Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+        h1 {
+            text-align: center;
+            color: #343a40;
+            font-size: 32px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #007bff;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        .form-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            width: 100%;
+            background-color: #f9f9f9;
+            transition: all 0.3s ease-in-out;
+            box-sizing: border-box;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 12px rgba(0, 123, 255, 0.2);
+            background-color: #fff;
+        }
+        .form-group input[type="number"] {
+            text-align: right;
+        }
+        .form-group label {
+            font-weight: 500;
+            color: #495057;
+            margin-bottom: 8px;
+        }
+        .form-group textarea {
+            resize: vertical;
+            height: 120px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .button-container button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.1);
+        }
+        .button-container button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.2);
+        }
+        .button-container button:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 10px rgba(0, 123, 255, 0.2);
+        }
+        .form-footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #6c757d;
+        }
+        .form-footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .form-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Company Budget Form</h1>
+    <form action="/Cost/accountantserv/Budget" method="POST">
+        <div class="section-title">Year</div>
+        <div class="form-group">
+            <div>
+                <label for="otherIncome">Year</label>
+                <input type="number" id="year" name="year" required placeholder="Enter the year of Budget">
+            </div>
+        </div>
+        <!-- Revenue Section -->
+        <div class="section-title">1. Revenue</div>
+        <div class="form-group">
+            <div>
+                <label for="salesRevenue">Sales/Revenue Projections</label>
+                <input type="number" id="salesRevenue" name="salesRevenue" required placeholder="Enter projected sales/revenue">
+            </div>
+            <div>
+                <label for="otherIncome">Other Income</label>
+                <input type="number" id="otherIncome" name="otherIncome" required placeholder="Enter other income sources">
+            </div>
+        </div>
+
+        <!-- Operating Expenses Section -->
+        <div class="section-title">2. Operating Expenses</div>
+        <div class="form-group">
+            <div>
+                <label for="cogs">Cost of Goods Sold (COGS)</label>
+                <input type="number" id="cogs" name="cogs" required placeholder="Enter COGS">
+            </div>
+            <div>
+                <label for="salariesWages">Salaries and Wages</label>
+                <input type="number" id="salariesWages" name="salariesWages" required placeholder="Enter salaries and wages">
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="rentUtilities">Rent and Utilities</label>
+                <input type="number" id="rentUtilities" name="rentUtilities" required placeholder="Enter rent and utilities">
+            </div>
+            <div>
+                <label for="officeSupplies">Office Supplies and Equipment</label>
+                <input type="number" id="officeSupplies" name="officeSupplies" required placeholder="Enter office supplies and equipment">
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="marketing">Marketing and Advertising</label>
+                <input type="number" id="marketing" name="marketing" required placeholder="Enter marketing expenses">
+            </div>
+            <div>
+                <label for="insurance">Insurance</label>
+                <input type="number" id="insurance" name="insurance" required placeholder="Enter insurance premiums">
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="travelEntertainment">Travel and Entertainment</label>
+                <input type="number" id="travelEntertainment" name="travelEntertainment" required placeholder="Enter travel and entertainment expenses">
+            </div>
+        </div>
+
+        <!-- Fixed Costs Section -->
+        <div class="section-title">3. Fixed Costs</div>
+        <div class="form-group">
+            <div>
+                <label for="depreciation">Depreciation</label>
+                <input type="number" id="depreciation" name="depreciation" required placeholder="Enter depreciation costs">
+            </div>
+            <div>
+                <label for="leasePayments">Lease or Loan Payments</label>
+                <input type="number" id="leasePayments" name="leasePayments" required placeholder="Enter lease or loan payments">
+            </div>
+        </div>
+
+        <!-- Capital Expenditures Section -->
+        <div class="section-title">4. Capital Expenditures (CapEx)</div>
+        <div class="form-group">
+            <div>
+                <label for="assetPurchases">Asset Purchases</label>
+                <input type="number" id="assetPurchases" name="assetPurchases" required placeholder="Enter asset purchases">
+            </div>
+            <div>
+                <label for="renovationCosts">Renovation or Expansion Costs</label>
+                <input type="number" id="renovationCosts" name="renovationCosts" required placeholder="Enter renovation or expansion costs">
+            </div>
+        </div>
+
+        <!-- Taxes Section -->
+        <div class="section-title">5. Taxes</div>
+        <div class="form-group">
+            <div>
+                <label for="incomeTax">Income Tax</label>
+                <input type="number" id="incomeTax" name="incomeTax" required placeholder="Enter income tax amount">
+            </div>
+            <div>
+                <label for="otherTaxes">Other Taxes</label>
+                <input type="number" id="otherTaxes" name="otherTaxes" required placeholder="Enter other taxes">
+            </div>
+        </div>
+
+        <!-- Debt Servicing Section -->
+        <div class="section-title">6. Debt Servicing</div>
+        <div class="form-group">
+            <div>
+                <label for="debtRepayments">Debt Repayments</label>
+                <input type="number" id="debtRepayments" name="debtRepayments" required placeholder="Enter debt repayments">
+            </div>
+        </div>
+
+        <!-- Cash Flow Forecast Section -->
+        <div class="section-title">7. Cash Flow Forecast</div>
+        <div class="form-group">
+            <div>
+                <label for="cashFlowForecast">Cash Flow Forecast</label>
+                <input type="number" id="cashFlowForecast" name="cashFlowForecast" required placeholder="Enter cash flow forecast">
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="button-container">
+            <button type="submit">
+                <i class="fas fa-paper-plane"></i> Submit Budget
+            </button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

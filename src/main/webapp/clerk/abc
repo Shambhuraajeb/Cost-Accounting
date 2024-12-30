@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <title>Interactive Employee Dashboard</title>
+
+    <style>
+        body {
+            background-color: #eaeaea;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #1a237e;
+            padding-top: 20px;
+            transition: width 0.3s ease;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .sidebar.collapsed {
+            width: 80px;
+        }
+
+        .sidebar a {
+            padding: 15px;
+            text-align: left;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s ease, padding-left 0.3s;
+        }
+
+        .sidebar a span {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .sidebar.collapsed a {
+            justify-content: center;
+            padding: 15px 0;
+        }
+
+        .sidebar a:hover {
+            background-color: #575fcf;
+        }
+
+        .sidebar.collapsed a span {
+            display: none;
+        }
+
+        .sidebar .logo {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar.collapsed .logo {
+            display: none;
+        }
+
+        .sidebar .logo img {
+            width: 80px;
+            border-radius: 50%;
+        }
+
+        .sidebar .nav-item i {
+            margin-right: 10px;
+        }
+
+        .sidebar.collapsed .nav-item i {
+            margin-right: 0;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 270px;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .sidebar.collapsed + .main-content {
+            margin-left: 100px;
+        }
+
+        .navbar {
+            background-color: #1a237e;
+            padding: 10px;
+            color: white;
+        }
+
+        .navbar-brand {
+            color: white;
+            font-weight: bold;
+        }
+
+        .toggle-btn {
+            position: fixed;
+            left: 15px;
+            top: 20px;
+            background-color: #1a237e;
+            color: white;
+            border: none;
+            font-size: 18px;
+            padding: 5px 10px;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        .sidebar.collapsed + .main-content .toggle-btn {
+            left: 80px;
+        }
+
+        /* Transaction Form */
+        .form-sec {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .form-sec:hover {
+            transform: scale(1.02);
+        }
+
+        .form-label {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .form-control {
+            font-size: 12px;
+            padding: 5px;
+        }
+
+        .btn {
+            background-color: #1a237e;
+            color: white;
+            padding: 10px;
+            font-size: 14px;
+            width: 100%;
+            font-weight: bold;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #0d1745;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 80px;
+            }
+
+            .sidebar.collapsed {
+                width: 60px;
+            }
+
+            .main-content {
+                margin-left: 80px;
+            }
+
+            .sidebar.collapsed + .main-content {
+                margin-left: 60px;
+            }
+
+            .toggle-btn {
+                left: 10px;
+                top: 10px;
+            }
+        }
+
+        /* Profile Card Design */
+        .profile-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .profile-card:hover {
+            transform: scale(1.02);
+        }
+
+        /* Profile Header */
+        .profile-header {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Profile Text Styling */
+        .profile-item label {
+            font-size: 14px;
+            color: #6c757d;
+            font-weight: bold;
+        }
+
+        .profile-text {
+            font-size: 16px;
+            font-weight: 500;
+            color: #343a40;
+            margin: 0;
+        }
+
+        /* Profile Section Spacing */
+        .profile-item {
+            margin-bottom: 15px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile-card {
+                padding: 15px;
+            }
+
+            .profile-header {
+                font-size: 24px;
+            }
+
+            .profile-text {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <img src="img/logo.webp" alt="Logo"> <!-- Placeholder logo -->
+            <h2>ERP</h2>
+        </div>
+        <a href="#" id="transaction-link" class="nav-item">
+            <i class="bi bi-cash-coin"></i>
+            <span>Transaction</span>
+        </a>
+        <a href="#" id="profile-link" class="nav-item">
+            <i class="bi bi-person"></i>
+            <span>Profile</span>
+        </a>
+    </div>
+
+    <!-- Toggle Button for Sidebar Collapse -->
+    <button class="toggle-btn" id="toggle-btn">☰</button>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">ERP Dashboard</a>
+            </div>
+        </nav>
+
+        <!-- Transaction Form -->
+        <div class="container" id="transaction-section">
+            <div class="form-sec">
+                <h1>Enter Transaction</h1>
+                <form id="transactionForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="transaction_id" class="form-label">Transaction ID</label>
+                            <input type="text" class="form-control" id="transaction_id" name="transaction_id"
+                                placeholder="Auto-generated" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cost_type" class="form-label">Cost Type</label>
+                            <select class="form-control" id="cost_type" name="cost_type" required>
+                                <option value="">Select Cost Type</option>
+                                <option value="direct">Direct</option>
+                                <option value="indirect">Indirect</option>
+                                <option value="overhead">Overhead</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="cost_element_id" class="form-label">Cost Element ID</label>
+                            <input type="number" class="form-control" id="cost_element_id" name="cost_element_id"
+                                required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="project_id" class="form-label">Project ID</label>
+                            <input type="number" class="form-control" id="project_id" name="project_id" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="product_id" class="form-label">Product ID</label>
+                            <input type="number" class="form-control" id="product_id" name="product_id" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="amount" class="form-label">Amount</label>
+                            <input type="number" class="form-control" id="amount" name="amount" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="transaction_date" class="form-label">Transaction Date</label>
+                            <input type="date" class="form-control" id="transaction_date" name="transaction_date"
+                                required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="allocation_base_id" class="form-label">Allocation Base ID</label>
+                            <input type="number" class="form-control" id="allocation_base_id" name="allocation_base_id"
+                                required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="3"
+                                required></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn">Submit Transaction</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Profile Section -->
+        <div class="container" id="profile-section" style="display:none;">
+            <div class="profile-card">
+                <div class="profile-header">Profile Information</div>
+                <div class="profile-item">
+                    <label for="emp_id" class="profile-text">Employee ID:</label>
+                    <p class="profile-text" id="emp_id">E123</p>
+                </div>
+                <div class="profile-item">
+                    <label for="emp_name" class="profile-text">Employee Name:</label>
+                    <p class="profile-text" id="emp_name">John Doe</p>
+                </div>
+                <div class="profile-item">
+                    <label for="emp_email" class="profile-text">Email:</label>
+                    <p class="profile-text" id="emp_email">johndoe@example.com</p>
+                </div>
+                <div class="profile-item">
+                    <label for="emp_role" class="profile-text">Role:</label>
+                    <p class="profile-text" id="emp_role">Cost Accountant</p>
+                </div>
+                <div class="profile-item">
+                    <label for="emp_department" class="profile-text">Department:</label>
+                    <p class="profile-text" id="emp_department">Finance</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQ54sC7qEaPVKf+yRCzM8n9pHlAtivCw6uqZgHEYo+pBYh8o1yktw7ptP2yA/cK0" crossorigin="anonymous"></script>
+
+    <script>
+        // Auto-generate Transaction ID
+        document.addEventListener('DOMContentLoaded', function () {
+            const transactionIdField = document.getElementById('transaction_id');
+            transactionIdField.value = 'TXN' + Math.floor(Math.random() * 1000000);
+        });
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const transactionForm = document.getElementById('transactionForm');
+            const transactionIDInput = document.getElementById('transaction_id');
+            const toggleButton = document.getElementById('toggle-btn');
+            const sidebar = document.getElementById('sidebar');
+            const transactionSection = document.getElementById('transaction-section');
+            const profileSection = document.getElementById('profile-section');
+            const transactionLink = document.getElementById('transaction-link');
+            const profileLink = document.getElementById('profile-link');
+
+            // Set initial Transaction ID
+            transactionIDInput.value = generateTransactionID();
+
+            // Toggle Sidebar
+            toggleButton.addEventListener('click', () => {
+                sidebar.classList.toggle('collapsed');
+            });
+
+            // Switch between Transaction and Profile sections
+            transactionLink.addEventListener('click', () => {
+                transactionSection.style.display = 'block';
+                profileSection.style.display = 'none';
+            });
+
+            profileLink.addEventListener('click', () => {
+                transactionSection.style.display = 'none';
+                profileSection.style.display = 'block';
+            });
+
+            // Handle form submission
+            transactionForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Logic to handle form submission (e.g., send to server)
+                alert('Transaction submitted successfully!');
+                transactionForm.reset();
+                transactionIDInput.value = generateTransactionID(); // Generate new ID
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+Login.class
+assistantserv\AllocationBase.class
+clerkserv\SubmitTransaction.class
+assistantserv\BudgetedCost.class
+accountantserv\Budget.class
+clerkserv\LabourHours.class
+LoginPageServlet.class
+accountantserv\CompanyCreation.class
+assistantserv\CostClassification.class
+Logout.class
+accountantserv\Project.class
+accountantserv\UpdateProject.class
+com\mycompany\cost\resources\JakartaEE10Resource.class
+assistantserv\CostElement.class
+com\mycompany\cost\JakartaRestConfiguration.class
+accountantserv\Employee.class
